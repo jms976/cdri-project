@@ -1,1 +1,2 @@
 # cdri-project
+# vite
