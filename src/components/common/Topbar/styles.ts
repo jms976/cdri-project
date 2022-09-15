@@ -12,4 +12,15 @@ export const Container = styled.div`
   z-index: 10;
   background-color: #fcfcfc;
   padding: 0 160px;
+  ul {
+    display: flex;
+    margin: auto;
+    cursor: pointer;
+    li {
+        margin: 5px;
+    }
+    .active {
+        color: red;
+    }
+  }
 `;
