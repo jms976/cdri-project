@@ -3,6 +3,22 @@ import styled from "styled-components";
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
+    width: 800px;
+    margin: 0 auto;
+`;
+
+export const SearchContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    .inputSection {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        .detailBtn {
+            position:relative;
+            margin-left: 10px;
+        }
+    }
 `;
 
 export const ListWrapper = styled.div`
@@ -10,10 +26,22 @@ export const ListWrapper = styled.div`
     flex-direction: column;
 `;
 
+export const DetailSearchPopup = styled.div`
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    width: 300px;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    top: 100px;
+    left: calc(50% - 200px);
+`;
+
 export const PagenationWrapper = styled.div`
     display: flex;
     justify-content: center;
-    margin: auto 10px;
     width: 100%;
     .pagination {
         display: flex;

@@ -4,9 +4,10 @@ import { useQuery, useQueryClient } from "react-query";
 
 import { getSearchBooks } from "./searchAPI";
 
-import { Input } from "@/modules/Styled"
+import { Input, Button } from "@/modules/Styled"
 
 import { SearchBookDataTypes } from "@/constants/Types";
+import { AiOutlineClose } from "react-icons/ai"
 import * as S from "./styles";
 
 const Search: React.FC = () => {
@@ -18,7 +19,8 @@ const Search: React.FC = () => {
   };
 
   const [searchValue, setSearchValue] = useState('');
-  const [currentText, setCurrentText] = useState('')
+  const [currentText, setCurrentText] = useState('');
+  const [isSearchPopupOpen, setIsSearchPopupOpen] = useState(false);
 
   const { data , isError, isLoading, isPreviousData } = useQuery<SearchBookDataTypes>(
     ["bookList", searchValue, page],
@@ -59,19 +61,39 @@ const Search: React.FC = () => {
   
   return (
     <S.Container>
-      <div>
-        <Input
-          width={"200px"}
-          type="text"
-          onKeyPress={handleOnKeyPress}
-          onChange={(e) => {
-            setCurrentText(e.target.value);
-          }}
-          placeholder="검색어를 입력하세요"
+      <S.SearchContainer>
+        <label>도서검색</label>
+        <div className="inputSection">
+          <Input
+            className="searchInput"
+            width={"200px"}
+            type="text"
+            value={currentText}
+            onKeyPress={handleOnKeyPress}
+            onChange={(e) => {
+              setCurrentText(e.target.value);
+            }}
+            placeholder="검색어를 입력하세요"
           />
-      </div>
+          <Button className="detailBtn" onClick={() => setIsSearchPopupOpen(true)}>
+            상세검색
+          </Button>
+          {isSearchPopupOpen && (
+            <S.DetailSearchPopup>
+              <AiOutlineClose onClick={() => setIsSearchPopupOpen(false)}/>
+              <Input onChange={(e) => {
+                setCurrentText(e.target.value);
+              }}/>
+              <Button onClick={() => {
+                setSearchValue(currentText);
+                setIsSearchPopupOpen(false);
+              }}>검색하기</Button>
+            </S.DetailSearchPopup>
+          )}
+        </div>
+      </S.SearchContainer>
       
-      <div>검색결과: {data?.meta.pageable_count || 0} 개</div>
+      <div>검색결과: 총 {data?.meta.pageable_count || 0} 건</div>
       
       <S.ListWrapper>
         {
@@ -99,7 +121,6 @@ const Search: React.FC = () => {
           onChange={handlePageChange}
         />
       </S.PagenationWrapper>
-      
     </S.Container>
   );
 };
