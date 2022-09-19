@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  width: 100%;
   align-items: center;
   flex-wrap: nowrap;
   position: fixed;
@@ -19,9 +18,10 @@ export const Container = styled.div`
     cursor: pointer;
     li {
         margin: 5px;
+        margin-right: 30px;
     }
     .active {
-        color: red;
+      border-bottom: 2px solid #4880EE;
     }
   }
 `;

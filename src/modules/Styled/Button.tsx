@@ -21,12 +21,11 @@ export default MyButton;
 const ButtonStyles = styled.button`
     color: #ccc;
     font-size: 1em;
-    padding: 0.25em 1em;
-    border: 2px solid #ccc;
-    border-radius: 10px;
     cursor: pointer;
-    :hover {
-        color: #aaa;
-        border-color: #aaa;
-    }
+    background: #4880EE;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    padding: 7px 12px;
 `;
